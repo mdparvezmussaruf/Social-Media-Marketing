@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Social Media Marketing – Complete Guide (HTML/CSS/JS)</title>
+<meta name="description" content="A beginner-to-intermediate Social Media Marketing guide covering Facebook, Instagram, TikTok, LinkedIn, YouTube, Pinterest, and X (Twitter). Organic tactics, ads, analytics, and pro tips."/>
+<style>
+  :root{
+    --bg:#f7f8fb;
+    --surface:#ffffff;
+    --text:#0f172a;
+    --muted:#475569;
+    --ring:#e2e8f0;
+    --brand:#2563eb;
+    --shadow:0 10px 20px rgba(2,6,23,.06),0 2px 6px rgba(2,6,23,.06);
+    --radius:16px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue, Arial, "Apple Color Emoji", "Segoe UI Emoji"; color:var(--text); background:var(--bg);}
+  a{color:inherit}
+  .container{max-width:1200px;margin-inline:auto;padding:16px}
+  /* Header */
+  .site-header{position:sticky;top:0;z-index:1000;backdrop-filter:saturate(180%) blur(8px);background:rgba(255,255,255,.85);border-bottom:1px solid var(--ring)}
+  .header-inner{display:flex;align-items:center;justify-content:space-between;padding:12px 16px}
+  .brand{font-weight:700;letter-spacing:.2px}
+  .chips{display:none;gap:8px}
+  .chip{font-size:12px;border:1px solid var(--ring);background:#fff;border-radius:999px;padding:4px 8px;color:#334155}
+  .menu-btn{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--ring);background:#fff;border-radius:12px;padding:8px;cursor:pointer}
+  .menu-btn span{font-size:18px}
+  /* Layout */
+  .grid{display:grid;grid-template-columns:1fr;gap:20px;margin-top:16px}
+  @media (min-width: 960px){
+    .grid{grid-template-columns:280px 1fr}
+    .chips{display:flex}
+  }
+  /* Sidebar */
+  .sidebar{position:relative}
+  @media (min-width:960px){
+    .sidebar{position:sticky;top:76px;height:max-content}
+  }
+  .panel{background:var(--surface);border:1px solid var(--ring);border-radius:var(--radius);padding:12px;box-shadow:var(--shadow)}
+  .search{display:flex;align-items:center;gap:8px;border:1px solid var(--ring);border-radius:12px;padding:8px 10px;margin-bottom:8px}
+  .search input{border:none;outline:none;background:transparent;width:100%}
+  .nav a{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 10px;border-radius:12px;text-decoration:none;color:#111827}
+  .nav a:hover{background:#f1f5f9}
+  .dot{width:10px;height:10px;border-radius:50%}
+  .hint{color:#64748b;font-size:12px;padding:4px 8px}
+  /* Cards */
+  .card{background:var(--surface);border:1px solid var(--ring);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)}
+  .hero h1{font-size:28px;margin:0 0 6px}
+  .hero p{color:var(--muted);margin:6px 0 0}
+  .pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+  .pill{background:#eef2ff;color:#3730a3;border-radius:999px;padding:6px 10px;font-size:12px}
+  /* Section */
+  section{scroll-margin-top:90px}
+  .section-title{display:flex;align-items:center;gap:10px;margin:0 0 10px;font-size:22px}
+  .summary{color:var(--muted);margin-top:0}
+  .grid-2{display:grid;gap:16px}
+  @media (min-width: 800px){.grid-2{grid-template-columns:1fr 1fr}}
+  .list{padding-left:18px;margin:8px 0}
+  .list li{margin:6px 0}
+  .kpi, .checklist, .opt{border:1px solid var(--ring);border-radius:12px;padding:14px}
+  .kpi h5, .checklist h5, .opt h5{margin:0 0 4px}
+  .meta-tip{display:flex;align-items:center;gap:8px;color:#64748b;font-size:14px}
+  .divider{height:1px;background:var(--ring);margin:16px 0}
+  .footer{color:#64748b;text-align:center;margin:20px 0 40px}
+  /* Platform color dots */
+  .facebook{background:#1877f2}
+  .instagram{background:linear-gradient(135deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5)}
+  .tiktok{background:#000}
+  .linkedin{background:#0a66c2}
+  .youtube{background:#ff0000}
+  .pinterest{background:#e60023}
+  .x{background:#111}
+  /* Mobile sidebar toggle */
+  .sidebar.mobile-hidden{display:none}
+  @media (min-width:960px){.sidebar.mobile-hidden{display:block}}
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner container">
+      <div style="display:flex;align-items:center;gap:10px">
+        <button class="menu-btn" id="toggleSidebar" aria-label="Toggle menu"><span>☰</span></button>
+        <div class="brand">Social Media Marketing Guide</div>
+      </div>
+      <div class="chips">
+        <span class="chip">Beginner → Intermediate</span>
+        <span class="chip">Organic & Paid</span>
+        <span class="chip">KPIs & Funnels</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container grid">
+    <!-- SIDEBAR -->
+    <aside class="sidebar mobile-hidden" id="sidebar">
+      <div class="panel">
+        <div class="search"><span>🔎</span><input id="search" placeholder="Search platform…"/></div>
+        <nav class="nav" id="navLinks">
+          <a href="#facebook"><span style="display:flex;align-items:center;gap:10px"><span class="dot facebook"></span>Facebook</span><span>›</span></a>
+          <a href="#instagram"><span style="display:flex;align-items:center;gap:10px"><span class="dot instagram"></span>Instagram</span><span>›</span></a>
+          <a href="#tiktok"><span style="display:flex;align-items:center;gap:10px"><span class="dot tiktok"></span>TikTok</span><span>›</span></a>
+          <a href="#linkedin"><span style="display:flex;align-items:center;gap:10px"><span class="dot linkedin"></span>LinkedIn</span><span>›</span></a>
+          <a href="#youtube"><span style="display:flex;align-items:center;gap:10px"><span class="dot youtube"></span>YouTube</span><span>›</span></a>
+          <a href="#pinterest"><span style="display:flex;align-items:center;gap:10px"><span class="dot pinterest"></span>Pinterest</span><span>›</span></a>
+          <a href="#x"><span style="display:flex;align-items:center;gap:10px"><span class="dot x"></span>X (Twitter)</span><span>›</span></a>
+        </nav>
+      </div>
+      <div class="hint">Tip: Use the menu to jump to each detailed playbook.</div>
+    </aside>
+
+    <!-- CONTENT -->
+    <div style="display:flex;flex-direction:column;gap:20px">
+      <section class="card hero" id="home">
+        <h1>All‑in‑One Social Media Marketing</h1>
+        <p>A practical website that covers <strong>Facebook, Instagram, TikTok, LinkedIn, YouTube, Pinterest, and X</strong>. Each section explains organic tactics, ad formats & targeting, analytics, and pro tips.</p>
+        <div class="pills">
+          <span class="pill">Strategy</span>
+          <span class="pill">Content</span>
+          <span class="pill">Ads</span>
+          <span class="pill">Analytics</span>
+          <span class="pill">Optimization</span>
+        </div>
+      </section>
+
+      <!-- TEMPLATE: Each platform uses the same structure -->
+      <section class="card" id="facebook">
+        <h2 class="section-title"><span class="dot facebook"></span>Facebook Marketing</h2>
+        <p class="summary">Mass reach across demographics with Meta’s Business Suite and cross‑placements (Instagram, Messenger, Audience Network).</p>
+        <div class="grid-2">
+          <div>
+            <h3>Organic Playbook</h3>
+            <ul class="list">
+              <li>Mix posts: images, Reels, Stories, Live, and carousels.</li>
+              <li>Post 3–5×/week; reply to comments & Messenger quickly.</li>
+              <li>Use Groups for community; Events for launches/webinars.</li>
+              <li>Pin top posts and add a clear Page CTA (e.g., Shop Now).</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Ads & Targeting</h3>
+            <p><strong>Formats:</strong> Image, Video, Carousel, Collection/Shop, Reels, Lead Ads, Messenger.</p>
+            <p><strong>Targeting:</strong> Core (age, geo, interests), Custom (site visitors, engagers), Lookalike (1–5%).</p>
+            <ul class="list">
+              <li>Install Meta Pixel + Conversions API.</li>
+              <li>Use Advantage+ Shopping for ecommerce.</li>
+              <li>Retarget 3/7/30‑day windows.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="grid-2">
+          <div class="kpi">
+            <h5>Analytics & KPIs</h5>
+            <ul class="list">
+              <li>Reach/Impressions, Engagement rate, CTR.</li>
+              <li>Cost per Result, ROAS, Lead quality.</li>
+            </ul>
+          </div>
+          <div class="checklist">
+            <h5>Pro Tips & Mistakes</h5>
+            <ul class="list">
+              <li>Test 3–5 creatives per ad set; kill losers fast.</li>
+              <li>Avoid text‑heavy images; prioritize thumb‑stopping visuals.</li>
+              <li>Warm up with value posts before hard offers.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="grid-2">
+          <div class="checklist">
+            <h5>Posting Cadence</h5>
+            <ul class="list"><li>4–7 posts/week</li><li>Reels priority</li></ul>
+          </div>
+          <div class="opt">
+            <h5>Optimization Ideas</h5>
+            <ul class="list"><li>A/B test headlines and creatives</li><li>Retarget 7/30‑day engagers</li><li>Iterate on top 10% posts</li></ul>
+          </div>
+        </div>
+        <p class="meta-tip">ℹ️ Connect Meta Pixel for conversion tracking.</p>
+      </section>
+
+      <section class="card" id="instagram">
+        <h2 class="section-title"><span class="dot instagram"></span>Instagram Marketing</h2>
+        <p class="summary">Visual storytelling via Reels, Stories, and Grid. Great for lifestyle, fashion, beauty, travel, and food.</p>
+        <div class="grid-2">
+          <div>
+            <h3>Organic Playbook</h3>
+            <ul class="list">
+              <li>Prioritize Reels (9–30s) with strong hooks & captions.</li>
+              <li>Stories daily for behind‑the‑scenes, polls, and Q&A.</li>
+              <li>Grid carousels for education; cohesive brand aesthetic.</li>
+              <li>Use 3–8 relevant hashtags; hook in first line.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Ads & Targeting</h3>
+            <p><strong>Formats:</strong> Reels, Stories, Image, Video, Carousel, Shop/Collection.</p>
+            <p><strong>Targeting:</strong> Core, Custom (IG engagers/profile), Lookalike.</p>
+            <ul class="list">
+              <li>Optimize for Add‑to‑Cart or Purchase after learning phase.</li>
+              <li>UGC‑style creatives often outperform polished ads.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="grid-2">
+          <div class="kpi">
+            <h5>Analytics & KPIs</h5>
+            <ul class="list"><li>Plays & Watch time</li><li>Saves/Shares</li><li>Profile visits & Follows</li><li>Outbound clicks</li></ul>
+          </div>
+          <div class="checklist">
+            <h5>Pro Tips & Mistakes</h5>
+            <ul class="list"><li>Hook in first 2 seconds; on‑screen captions</li><li>Post 4–7×/week; batch create</li><li>Collabs & influencer whitelisting</li></ul>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="grid-2">
+          <div class="checklist">
+            <h5>Posting Cadence</h5>
+            <ul class="list"><li>4–7 posts/week</li><li>Reels/Stories daily</li></ul>
+          </div>
+          <div class="opt">
+            <h5>Optimization Ideas</h5>
+            <ul class="list"><li>Test hooks & thumbnails</li><li>Saveable carousels</li><li>CTA to DM for offers</li></ul>
+          </div>
+        </div>
+        <p class="meta-tip">ℹ️ Connect Meta Pixel; track IG profile visitors and site actions.</p>
+      </section>
+
+      <section class="card" id="tiktok">
+        <h2 class="section-title"><span class="dot tiktok"></span>TikTok Marketing</h2>
+        <p class="summary">Short‑form video built on discovery and trends. High virality potential with creator‑driven culture.</p>
+        <div class="grid-2">
+          <div>
+            <h3>Organic Playbook</h3>
+            <ul class="list">
+              <li>Post 4–10×/week to find message–market fit.</li>
+              <li>Structure: HOOK (0–2s) → Value → CTA.</li>
+              <li>Native editing, fast cuts, captions.</li>
+              <li>Engage comments; stitch/duet relevant videos.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Ads & Targeting</h3>
+            <p><strong>Formats:</strong> In‑Feed, Spark Ads, TopView, Carousel, Live Shopping.</p>
+            <p><strong>Targeting:</strong> Interests/behavior, Custom (engagers/site), Lookalike.</p>
+            <ul class="list">
+              <li>Boost best organic videos with Spark Ads.</li>
+              <li>Creator UGC variations for scale.</li>
+              <li>Optimize View Content → ATC → Purchase.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="grid-2">
+          <div class="kpi">
+            <h5>Analytics & KPIs</h5>
+            <ul class="list"><li>Views & Average watch time</li><li>Full‑watch rate & Shares</li><li>Profile visits</li><li>Conversions</li></ul>
+          </div>
+          <div class="checklist">
+            <h5>Pro Tips & Mistakes</h5>
+            <ul class="list"><li>Vertical 9:16; subject fills frame</li><li>Cuts every 1–2s; add captions</li><li>Join trends only when on‑brand</li></ul>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="grid-2">
+          <div class="checklist">
+            <h5>Posting Cadence</h5>
+            <ul class="list"><li>5–10 posts/week</li><li>Trend‑aligned content</li></ul>
+          </div>
+          <div class="opt">
+            <h5>Optimization Ideas</h5>
+            <ul class="list"><li>Refilm top hooks</li><li>Creator collabs</li><li>Comment CTAs</li></ul>
+          </div>
+        </div>
+        <p class="meta-tip">ℹ️ Install TikTok Pixel for conversions; use Events API as needed.</p>
+      </section>
+
+      <section class="card" id="linkedin">
+        <h2 class="section-title"><span class="dot linkedin"></span>LinkedIn Marketing</h2>
+        <p class="summary">B2B platform for decision‑makers: demand gen, ABM, thought leadership, and recruiting.</p>
+        <div class="grid-2">
+          <div>
+            <h3>Organic Playbook</h3>
+            <ul class="list">
+              <li>Founders/SMEs post POVs weekly; employees engage.</li>
+              <li>Mix: text posts, carousels (PDF), native video, docs.</li>
+              <li>Company Page + Showcase Pages for products.</li>
+              <li>Use Events + Live for webinars.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Ads & Targeting</h3>
+            <p><strong>Formats:</strong> Single Image, Document/Carousel, Video, Lead Gen Forms, Message/Conversation.</p>
+            <p><strong>Targeting:</strong> Job title/seniority, Company size/industry, Skills, Groups, ABM lists.</p>
+            <ul class="list">
+              <li>Gate mid‑funnel content with Lead Gen Forms.</li>
+              <li>Install Insight Tag for website retargeting.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="grid-2">
+          <div class="kpi">
+            <h5>Analytics & KPIs</h5>
+            <ul class="list"><li>Impressions & Engagement rate</li><li>Follower growth</li><li>Lead form fill rate</li><li>Cost per Lead & Pipeline influenced</li></ul>
+          </div>
+          <div class="checklist">
+            <h5>Pro Tips & Mistakes</h5>
+            <ul class="list"><li>Value > virality. Teach, don’t tease.</li><li>Use proof assets (case studies, benchmarks).</li><li>Remarket to site visitors & engagers.</li></ul>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="grid-2">
+          <div class="checklist">
+            <h5>Posting Cadence</h5>
+            <ul class="list"><li>3–5 posts/week</li><li>1 live/webinar per month</li></ul>
+          </div>
+          <div class="opt">
+            <h5>Optimization Ideas</h5>
+            <ul class="list"><li>Carousel frameworks</li><li>Employee advocacy</li><li>Lead Gen Forms + email nurture</li></ul>
+          </div>
+        </div>
+        <p class="meta-tip">ℹ️ Add LinkedIn Insight Tag to track conversions & audiences.</p>
+      </section>
+
+      <section class="card" id="youtube">
+        <h2 class="section-title"><span class="dot youtube"></span>YouTube Marketing</h2>
+        <p class="summary">Search + recommendations for long‑form education, reviews, and storytelling. Evergreen growth potential.</p>
+        <div class="grid-2">
+          <div>
+            <h3>Organic Playbook</h3>
+            <ul class="list">
+              <li>Map content to high‑intent keywords (use autosuggest).</li>
+              <li>Compelling title/thumbnail; 5–15s hook; chapters.</li>
+              <li>Use end screens & cards to increase session time.</li>
+              <li>Repurpose to Shorts with punchy hooks.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Ads & Targeting</h3>
+            <p><strong>Formats:</strong> Skippable In‑Stream, Non‑Skippable, In‑Feed (Discovery), Bumper, Shorts Ads.</p>
+            <p><strong>Targeting:</strong> Custom intent (search terms), Affinity/In‑market, Remarketing.</p>
+            <ul class="list">
+              <li>Optimize for conversions with GA4 + Google tag.</li>
+              <li>Creative sequence: Problem → Proof → Product.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="grid-2">
+          <div class="kpi">
+            <h5>Analytics & KPIs</h5>
+            <ul class="list"><li>CTR (thumb/title)</li><li>Average view duration</li><li>Retention curve</li><li>Subs gained</li><li>Conversions</li></ul>
+          </div>
+          <div class="checklist">
+            <h5>Pro Tips & Mistakes</h5>
+            <ul class="list"><li>Design thumbnails first; earn the click</li><li>Deliver on the title fast</li><li>Hook → Value → CTA; remove fluff</li></ul>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="grid-2">
+          <div class="checklist">
+            <h5>Posting Cadence</h5>
+            <ul class="list"><li>1 video/week</li><li>2–4 Shorts/week</li></ul>
+          </div>
+          <div class="opt">
+            <h5>Optimization Ideas</h5>
+            <ul class="list"><li>A/B test thumbnails</li><li>Chapters & end screens</li><li>CTA in first 60s</li></ul>
+          </div>
+        </div>
+        <p class="meta-tip">ℹ️ Connect GA4 & conversions; link YouTube to Google Ads.</p>
+      </section>
+
+      <section class="card" id="pinterest">
+        <h2 class="section-title"><span class="dot pinterest"></span>Pinterest Marketing</h2>
+        <p class="summary">Inspiration & planning with commercial intent (home, DIY, fashion, food, travel). Long content lifespan.</p>
+        <div class="grid-2">
+          <div>
+            <h3>Organic Playbook</h3>
+            <ul class="list">
+              <li>Create idea pins & standard pins with keyworded titles.</li>
+              <li>Fresh pins weekly; seasonal boards.</li>
+              <li>Use vertical 1000×1500 images with text overlays.</li>
+              <li>Link to blogs, collections, and lead magnets.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Ads & Targeting</h3>
+            <p><strong>Formats:</strong> Standard, Video, Shopping, Collections, Idea Ads.</p>
+            <p><strong>Targeting:</strong> Interests/keywords, Actalike audiences, Retargeting.</p>
+            <ul class="list">
+              <li>Upload product feed for Shopping.</li>
+              <li>Optimize for Add‑to‑Cart and Checkout.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="grid-2">
+          <div class="kpi">
+            <h5>Analytics & KPIs</h5>
+            <ul class="list"><li>Saves</li><li>Outbound clicks</li><li>Engagements</li><li>Top pins</li><li>Conversions</li></ul>
+          </div>
+          <div class="checklist">
+            <h5>Pro Tips & Mistakes</h5>
+            <ul class="list"><li>Text overlays to clarify value</li><li>Plan 6–8 weeks ahead for seasonality</li><li>Use Rich Pins for metadata</li></ul>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="grid-2">
+          <div class="checklist">
+            <h5>Posting Cadence</h5>
+            <ul class="list"><li>5–10 pins/week</li><li>Seasonal boards</li></ul>
+          </div>
+          <div class="opt">
+            <h5>Optimization Ideas</h5>
+            <ul class="list"><li>Keyword‑rich titles</li><li>Fresh creative variations</li><li>Link to evergreen content</li></ul>
+          </div>
+        </div>
+        <p class="meta-tip">ℹ️ Add Pinterest tag; enable product catalog for Shopping ads.</p>
+      </section>
+
+      <section class="card" id="x">
+        <h2 class="section-title"><span class="dot x"></span>X (Twitter) Marketing</h2>
+        <p class="summary">Real‑time platform for news, customer support, and niche communities. Great for brands with active voices.</p>
+        <div class="grid-2">
+          <div>
+            <h3>Organic Playbook</h3>
+            <ul class="list">
+              <li>Post 1–3 short insights daily; reply to others.</li>
+              <li>Use threads for mini‑guides and breakdowns.</li>
+              <li>Host Spaces for AMAs; pin key offers.</li>
+              <li>Monitor brand mentions; respond fast.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Ads & Targeting</h3>
+            <p><strong>Formats:</strong> Promoted posts, Video, Carousel, Website clicks, Lead gen.</p>
+            <p><strong>Targeting:</strong> Interests/topics, Keywords, Follower look‑alikes, Retargeting.</p>
+            <ul class="list">
+              <li>Short native videos (6–20s) perform well.</li>
+              <li>Align with trending topics carefully.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="grid-2">
+          <div class="kpi">
+            <h5>Analytics & KPIs</h5>
+            <ul class="list"><li>Impressions</li><li>Engagements</li><li>Profile visits</li><li>Link clicks</li><li>Follows</li><li>Conversions</li></ul>
+          </div>
+          <div class="checklist">
+            <h5>Pro Tips & Mistakes</h5>
+            <ul class="list"><li>Clarity over cleverness; deliver value</li><li>Use charts/images to stand out</li><li>Join relevant lists to expand reach</li></ul>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="grid-2">
+          <div class="checklist">
+            <h5>Posting Cadence</h5>
+            <ul class="list"><li>Daily posts</li><li>Weekly thread or Space</li></ul>
+          </div>
+          <div class="opt">
+            <h5>Optimization Ideas</h5>
+            <ul class="list"><li>A/B test hooks</li><li>Reply strategy to larger accounts</li><li>Pin high‑performing tweet</li></ul>
+          </div>
+        </div>
+        <p class="meta-tip">ℹ️ Add the website tag for conversions; use UTM links for tracking.</p>
+      </section>
+
+      <footer class="footer">Built as a compact, practical playbook. Customize text, brand colors, and add your logo for production use.</footer>
+    </div>
+  </main>
+
+<script>
+  // Sidebar mobile toggle
+  const toggleBtn = document.getElementById('toggleSidebar');
+  const sidebar = document.getElementById('sidebar');
+  toggleBtn.addEventListener('click', () => {
+    sidebar.classList.toggle('mobile-hidden');
+  });
+
+  // Search filter
+  const search = document.getElementById('search');
+  const links = Array.from(document.querySelectorAll('#navLinks a'));
+  search.addEventListener('input', (e)=>{
+    const q = e.target.value.toLowerCase();
+    links.forEach(a => {
+      const text = a.textContent.toLowerCase();
+      a.style.display = text.includes(q) ? 'flex' : 'none';
+    });
+  });
+
+  // Close sidebar on link click (mobile UX)
+  links.forEach(a => a.addEventListener('click', () => {
+    if (window.innerWidth < 960) sidebar.classList.add('mobile-hidden');
+  }));
+</script>
+</body>
+</html>
